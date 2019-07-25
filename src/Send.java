@@ -2,10 +2,6 @@ package com.bext;
 
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
-
-import java.util.Map;
-
-import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 
 public class Send {
@@ -16,19 +12,10 @@ public class Send {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		try(Connection connection = factory.newConnection();
-			   Channel    channel = connection.createChannel()) {
-			boolean durable = false;
-			boolean exclusive = false;
-			boolean autoDelete = false;
-			Map<String,Object> arguments = null;
-			channel.queueDeclare(QUEUE_NAME,durable, exclusive, autoDelete, arguments);
-			
+				Channel channel = connection.createChannel()) {
+			channel.queueDeclare(QUEUE_NAME,false, false,false, null);
 			String message = "simple mensaje";
-			String exchange = "";
-			String routingKey = QUEUE_NAME;
-			AMQP.BasicProperties props = null;
-			channel.basicPublish(exchange, routingKey, props, message.getBytes());
-			
+			channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
 			System.out.println(" [x] enviado '" + message + "'");
 		}
 	}

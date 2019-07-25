@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.bext</groupId>
 		<artifactId>RabbitMQSimplest</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1</version>
 	</parent>
 	<artifactId>RabbitMQSimplestReceive</artifactId>
 	<properties>
@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>com.rabbitmq</groupId>
 			<artifactId>amqp-client</artifactId>
-			<version>5.6.0</version>
+			<version>5.7.1</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 		<dependency>
